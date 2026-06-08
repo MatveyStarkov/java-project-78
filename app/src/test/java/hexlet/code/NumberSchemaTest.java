@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class NumberSchemaTest {
     @Test
     void testWithoutRequired() {
-        var schema = new NumberSchema();
+        NumberSchema schema = new NumberSchema();
 
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid(5));
@@ -17,7 +17,7 @@ public class NumberSchemaTest {
 
     @Test
     void testRequired() {
-        var schema = new NumberSchema().required();
+        NumberSchema schema = new NumberSchema().required();
 
         assertFalse(schema.isValid(null));
         assertTrue(schema.isValid(10));
@@ -25,7 +25,7 @@ public class NumberSchemaTest {
 
     @Test
     void testPositive() {
-        var schema = new NumberSchema().positive();
+        NumberSchema schema = new NumberSchema().positive();
 
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid(10));
@@ -35,7 +35,7 @@ public class NumberSchemaTest {
 
     @Test
     void testRange() {
-        var schema = new NumberSchema().range(5, 10);
+        NumberSchema schema = new NumberSchema().range(5, 10);
 
         assertTrue(schema.isValid(5));
         assertTrue(schema.isValid(10));
@@ -45,7 +45,7 @@ public class NumberSchemaTest {
 
     @Test
     void testRequiredAndPositive() {
-        var schema = new NumberSchema().required().positive();
+        NumberSchema schema = new NumberSchema().required().positive();
 
         assertFalse(schema.isValid(null));
         assertTrue(schema.isValid(1));

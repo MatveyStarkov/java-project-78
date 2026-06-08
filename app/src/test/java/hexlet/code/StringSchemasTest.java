@@ -10,7 +10,7 @@ class StringSchemaTest {
 
     @Test
     void testWithoutRequired() {
-        var schema = new StringSchema();
+        StringSchema schema = new StringSchema();
 
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid(""));
@@ -19,7 +19,7 @@ class StringSchemaTest {
 
     @Test
     void testRequired() {
-        var schema = new StringSchema().required();
+        StringSchema schema = new StringSchema().required();
 
         assertFalse(schema.isValid(null));
         assertFalse(schema.isValid(""));
@@ -28,7 +28,7 @@ class StringSchemaTest {
 
     @Test
     void testMinLength() {
-        var schema = new StringSchema().minLength(5);
+        StringSchema schema = new StringSchema().minLength(5);
 
         assertTrue(schema.isValid("matthew"));
         assertTrue(schema.isValid("Starkov"));
@@ -37,7 +37,7 @@ class StringSchemaTest {
 
     @Test
     void testContains() {
-        var schema = new StringSchema().contains("matt");
+        StringSchema schema = new StringSchema().contains("matt");
 
         assertTrue(schema.isValid("matthew"));
         assertTrue(schema.isValid("matthewStarkov"));
@@ -46,14 +46,14 @@ class StringSchemaTest {
 
     @Test
     void testMinLengthOverride() {
-        var schema = new StringSchema().minLength(10).minLength(4);
+        StringSchema schema = new StringSchema().minLength(10).minLength(4);
 
         assertTrue(schema.isValid("matt"));
     }
 
     @Test
     void testContainsOverride() {
-        var schema = new StringSchema().contains("mat").contains("hew");
+        StringSchema schema = new StringSchema().contains("mat").contains("hew");
 
         assertTrue(schema.isValid("matthew"));
         assertFalse(schema.isValid("matvey"));
