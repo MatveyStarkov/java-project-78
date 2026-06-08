@@ -1,7 +1,7 @@
 package hexlet.code.schemas;
 
-public class StringSchema {
-    private boolean required;
+public class StringSchema extends BaseSchema<String> {
+
     private Integer minLength;
     private String contains;
 
@@ -20,19 +20,24 @@ public class StringSchema {
         return this;
     }
 
+    @Override
     public boolean isValid(String value) {
-        if (value == null) {
+        if (!super.isValid(value)) {
+            return false;
+        }
+
+        if (value == null || value.isEmpty()) {
             return !required;
         }
-        if (value.isEmpty()) {
-            return !required;
-        }
+
         if (minLength != null && value.length() < minLength) {
             return false;
         }
+
         if (contains != null && !value.contains(contains)) {
             return false;
         }
+
         return true;
     }
 }
